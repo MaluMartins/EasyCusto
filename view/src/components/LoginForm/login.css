@@ -1,0 +1,75 @@
+.login-page {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%!important;
+}
+
+#login-form {
+    display: flex;
+    flex-direction: column;
+    width: 95%;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+}
+
+#login-form label {
+    font-weight: bold;
+    display: block;
+    margin-bottom: 5px;
+    color: #333;
+}
+
+#login-form input[type="text"],
+#login-form input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    transition: border-color 0.3s ease;
+    box-sizing: border-box;
+}
+
+#login-form input[type="text"]:focus,
+#login-form input[type="password"]:focus {
+    border-color: #8a3030;
+    outline: none;
+}
+
+#login-form input[type="button"] {
+    background-color: #8a3030;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    width: 100%;
+}
+
+#login-form input[type="button"]:hover {
+    background-color: #792727;
+}
+
+.error-message {
+    color: red;
+    margin-top: 10px;
+}
+
+@media (min-width: 768px) {
+    #login-form {
+        width: 400px;
+    }
+
+    #login-form input[type="text"],
+    #login-form input[type="password"] {
+        padding: 15px;
+    }
+
+    #login-form input[type="button"] {
+        padding: 15px 30px;
+    }
+}
