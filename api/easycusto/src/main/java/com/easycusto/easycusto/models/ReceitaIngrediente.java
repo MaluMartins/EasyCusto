@@ -31,7 +31,7 @@ public class ReceitaIngrediente {
 
     @ManyToOne
     @JoinColumn(name = "ingrediente_id")
-    @JsonIgnore
+    //@JsonIgnore
     private Ingrediente ingrediente;
 
     @Column(name = "qt_usada")

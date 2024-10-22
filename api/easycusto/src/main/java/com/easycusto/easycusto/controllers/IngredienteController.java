@@ -57,27 +57,38 @@ public class IngredienteController {
 	}
 	
 	//criar novo ingrediente e adicionar em uma receita
-	/*@PostMapping("criarIngredienteEmReceita/{id_receita}")
+	@PostMapping("criarIngredienteEmReceita/{id_receita}")
 	public ResponseEntity<Ingrediente> createRecipeIngredient(@RequestBody @Valid IngredienteAddDTO dto, @PathVariable Long id_receita) {
-		Ingrediente novoIngrediente = new Ingrediente(dto.nome(), dto.precoPorEmbalagem(), dto.qtPorEmbalagem(), dto.qtUsada());
+		Ingrediente novoIngrediente = new Ingrediente(dto.nome(), dto.precoPorEmbalagem(), dto.qtPorEmbalagem());
 		this.ingredienteRepository.save(novoIngrediente);
+		
+		double precoPorEmbalagem = novoIngrediente.getPrecoPorEmbalagem();
+		double qtUsada = dto.qtUsada();
+		double qtPorEmbalagem = novoIngrediente.getQtPorEmbalagem();
+		
+		double custoIngrediente = (precoPorEmbalagem * qtUsada)/qtPorEmbalagem;
 		
 		Receita receita = this.receitaService.findById(id_receita);
 		
-		Set<Ingrediente> ingredientes = new HashSet<>();
-		ingredientes.add(novoIngrediente);
-		
-		receita.setIngredientes(ingredientes);
-		this.receitaRepository.save(receita);
-		
-		return ResponseEntity.ok(null);
-	}*/
+		ReceitaIngrediente receitaIngrediente = new ReceitaIngrediente();
+	    receitaIngrediente.setIngrediente(novoIngrediente);
+	    receitaIngrediente.setReceita(receita);
+	    receitaIngrediente.setQtUsada(qtUsada);
+	    receitaIngrediente.setCustoIngrediente(custoIngrediente);
+	    
+	    this.receitaIngredienteRepository.save(receitaIngrediente);
+	    
+	    receita.getReceitaIngredientes().add(receitaIngrediente);
+	    
+	    this.receitaRepository.save(receita);
+	    
+	    return ResponseEntity.ok(novoIngrediente);
+	}
 	
 	//pegar ingredientes existentes e adicionar em uma receita existente
 	@PostMapping("adicionarIngredienteEmReceita/{id_receita}")
 	public ResponseEntity<Receita> assignIngredientToRecipe(@PathVariable Long id_receita, @RequestBody IngredienteIdDTO ingredienteRequest) {
 		Ingrediente ingrediente = this.ingredienteService.findById(ingredienteRequest.id());
-		//ingrediente.setQtUsada(ingredienteRequest.qtUsada());
 		
 		double precoPorEmbalagem = ingrediente.getPrecoPorEmbalagem();
 		double qtUsada = ingredienteRequest.qtUsada();
@@ -95,10 +106,8 @@ public class IngredienteController {
 	    
 	    this.receitaIngredienteRepository.save(receitaIngrediente);
 	    
-	    // Adicionar o novo ReceitaIngrediente na receita
 	    receita.getReceitaIngredientes().add(receitaIngrediente);
 	    
-	    // Atualizar e salvar a receita
 	    this.receitaRepository.save(receita);
 	    
 	    return ResponseEntity.ok(receita);

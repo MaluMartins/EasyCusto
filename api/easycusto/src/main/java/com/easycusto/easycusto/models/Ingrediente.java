@@ -6,6 +6,8 @@ import java.util.Set;
 
 import org.hibernate.annotations.Formula;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -40,6 +42,7 @@ public class Ingrediente {
 	private double qtPorEmbalagem;
 	
 	@OneToMany(mappedBy = "ingrediente", cascade = CascadeType.ALL, orphanRemoval = true) 
+	@JsonIgnore
     private Set<ReceitaIngrediente> receitaIngredientes = new HashSet<>();
 	
 	public Ingrediente(String nome, double precoPorEmbalagem, double qtPorEmbalagem) {
