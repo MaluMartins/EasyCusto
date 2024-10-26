@@ -1,0 +1,26 @@
+.recipeCard {
+    width: 99%;
+    padding: 1em;
+    margin: 1em 0;
+    font-size: 1em;
+    border-radius: 8px;
+    box-shadow: 0 0 4px 2px rgba(138, 48, 0.2, 0.1);
+    background-color: #f5f0f0;
+    display: flex;
+    justify-content: space-between;
+}
+
+.card-buttons button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 1.2rem;
+    color: #a62424;
+}
+
+@media (max-width: 768px) {
+    .recipeCard {
+        width: 90%;
+    }
+    
+}

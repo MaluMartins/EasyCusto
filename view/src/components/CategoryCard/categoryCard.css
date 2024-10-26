@@ -1,0 +1,7 @@
+.categoryCard {
+    background-color: #ff8225;
+    border-radius: 5px;
+    padding: .3em;
+    margin: .5em .3em;
+    width: fit-content;
+}
