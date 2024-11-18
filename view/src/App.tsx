@@ -8,7 +8,7 @@ import { AppRoutes } from './routes/AppRoutes'
 function App() {
     const tabData = [
       { label: 'Receitas', content: <Receitas /> },
-      { label: 'Ingredientes', content: <Ingredientes /> },
+      { label: 'Materiais', content: <Ingredientes /> },
     ];
 
   return (

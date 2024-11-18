@@ -1,6 +1,5 @@
 package com.easycusto.easycusto.models;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.Column;
@@ -44,6 +43,7 @@ public class ReceitaIngrediente {
         this.receita = receita;
         this.ingrediente = ingrediente;
         this.qtUsada = qtUsada;
-        this.custoIngrediente = (ingrediente.getPrecoPorEmbalagem() * qtUsada) / ingrediente.getQtPorEmbalagem();
+        //this.custoIngrediente = (ingrediente.getPrecoPorEmbalagem() * qtUsada) / ingrediente.getQtPorEmbalagem();
+        this.custoIngrediente = ingrediente.getCustoPorUnidade() * qtUsada;
     }
 }

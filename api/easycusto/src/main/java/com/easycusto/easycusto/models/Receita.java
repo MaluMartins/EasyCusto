@@ -39,22 +39,24 @@ public class Receita {
 	@Column(name = "rendimento")
 	private int rendimento;
 	
-	@Column(name = "custo_embalagem")
-	private BigDecimal custoEmbalagem;
-	
 	@Column(name = "margem_lucro")
 	private BigDecimal margemLucro;
 	
 	@Column(name = "data_inclusao")
 	private LocalDate dataInclusao;
 	
+	@Column(name = "horas_producao")
+	private double horasProducao;
+	
 	@OneToMany(mappedBy = "receita", cascade = CascadeType.ALL, orphanRemoval = true) 
     private Set<ReceitaIngrediente> receitaIngredientes = new HashSet<>();
+	
+	@ManyToMany(mappedBy = "receitas", cascade = CascadeType.ALL)
+	private Set<Taxa> taxas = new HashSet<>();
 	
 	public Receita(String nome, int rendimento, BigDecimal custoEmbalagem, BigDecimal margemLucro) {
 		this.nome = nome;
 		this.rendimento = rendimento;
-		this.custoEmbalagem = custoEmbalagem;
 		this.margemLucro = margemLucro;
 		this.dataInclusao = LocalDate.now();
 	}

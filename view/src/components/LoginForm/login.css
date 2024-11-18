@@ -35,12 +35,12 @@
 
 #login-form input[type="text"]:focus,
 #login-form input[type="password"]:focus {
-    border-color: #8a3030;
+    border-color: #a62424;
     outline: none;
 }
 
 #login-form input[type="button"] {
-    background-color: #8a3030;
+    background-color: #a62424;
     color: #fff;
     border: none;
     padding: 10px 20px;

@@ -41,6 +41,9 @@ public class Ingrediente {
 	@Column(name = "qt_por_embalagem")
 	private double qtPorEmbalagem;
 	
+	@Column(name = "custo_por_unidade")
+	private double custoPorUnidade;
+	
 	@OneToMany(mappedBy = "ingrediente", cascade = CascadeType.ALL, orphanRemoval = true) 
 	@JsonIgnore
     private Set<ReceitaIngrediente> receitaIngredientes = new HashSet<>();
@@ -49,5 +52,6 @@ public class Ingrediente {
         this.nome = nome;
         this.precoPorEmbalagem = precoPorEmbalagem;
         this.qtPorEmbalagem = qtPorEmbalagem;
+        this.custoPorUnidade = precoPorEmbalagem / qtPorEmbalagem;
     }
 }

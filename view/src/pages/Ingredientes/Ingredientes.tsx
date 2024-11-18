@@ -8,7 +8,7 @@ export function Ingredientes() {
     return (
         <div id="ingredientesContainer">
             <Sidebar />
-            <h1>Ingredientes</h1>
+            <h1>Materiais</h1>
             <SearchBar />
             <AddButton />
             <IngredientCard />
