@@ -1,9 +1,5 @@
-.categorias {
-    display: flex;
-}
-
 @media (min-width: 700px) {
-    #receitasContainer {
+    #ingredientesContainer {
         padding: 2em;
         margin-left: 200px;
     }
