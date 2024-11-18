@@ -17,6 +17,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToMany;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
@@ -40,7 +41,7 @@ public class Receita {
 	private int rendimento;
 	
 	@Column(name = "margem_lucro")
-	private BigDecimal margemLucro;
+	private double margemLucro;
 	
 	@Column(name = "data_inclusao")
 	private LocalDate dataInclusao;
@@ -54,11 +55,60 @@ public class Receita {
 	@ManyToMany(mappedBy = "receitas", cascade = CascadeType.ALL)
 	private Set<Taxa> taxas = new HashSet<>();
 	
-	public Receita(String nome, int rendimento, BigDecimal custoEmbalagem, BigDecimal margemLucro) {
+	@ManyToOne
+    @JoinColumn(name = "salario_id")
+    private Salario salario;
+	
+	//calculos finais
+	@Column(name = "custo_total")
+	private double custoTotal;
+	
+	@Column(name = "custo_por_unidade")
+	private double custoPorUnidade;
+	
+	@Column(name = "preco_total")
+	private double precoTotal;
+	
+	@Column(name = "preco_por_unidade")
+	private double precoPorUnidade;
+	
+	@Column(name = "lucro_total")
+	private double lucroTotal;
+	
+	@Column(name = "lucro_por_unidade")
+	private double lucroPorUnidade;
+	
+	public Receita(String nome, int rendimento, double margemLucro) {
 		this.nome = nome;
 		this.rendimento = rendimento;
 		this.margemLucro = margemLucro;
 		this.dataInclusao = LocalDate.now();
 	}
+	
+	public void calcularCustosFinais() {
+		double custoTotalIngredientes = 0;
+		double totalTaxas = 0;
+		double maoDeObra = this.salario.getSalarioPorHora() * this.horasProducao;
+		double margemLucroReal = 1 + this.margemLucro/100;
+		
+		for (ReceitaIngrediente ingrediente : receitaIngredientes) {
+			custoTotalIngredientes += ingrediente.getCustoIngrediente();
+		}
+		
+		for (Taxa taxa : taxas) {
+			totalTaxas += taxa.getPercentual();
+		}
+		
+		double taxaReal = 1 + totalTaxas/100;
+		
+		this.custoTotal = (custoTotalIngredientes + maoDeObra) * taxaReal;
+		this.custoPorUnidade = this.custoTotal / this.rendimento;
+		
+		this.precoPorUnidade = this.custoPorUnidade * margemLucroReal;
+		this.precoTotal = this.precoPorUnidade * rendimento;
+		
+		this.lucroPorUnidade = this.precoPorUnidade - this.custoPorUnidade;
+		this.lucroTotal = this.precoTotal - this.custoTotal;
+ 	}
 
 }
