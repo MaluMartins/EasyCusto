@@ -10,7 +10,7 @@ const Tabs: React.FC<{ tabs: TabProps[] }> = ({ tabs }) => {
   const [activeTab, setActiveTab] = useState(0);
 
   return (
-    <div>
+    <div id="tabs">
       <div className="tabs-container">
         {tabs.map((tab, index) => (
           <div

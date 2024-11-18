@@ -1,0 +1,6 @@
+@media (min-width: 700px) {
+    #salarioContainer {
+        padding: 2em;
+        margin-left: 200px;
+    }
+}

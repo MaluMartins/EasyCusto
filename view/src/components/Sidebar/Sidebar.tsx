@@ -22,10 +22,10 @@ export function Sidebar() {
                             <Link to="/">Página principal</Link>
                         </li>
                         <li>
-                            <Link to="/products">Minhas taxas</Link>
+                            <Link to="/taxas">Minhas taxas</Link>
                         </li>
                         <li>
-                            <Link to="/orders">Meu salário</Link>
+                            <Link to="/salario">Meu salário</Link>
                         </li>
                     </ul>
                 </nav>

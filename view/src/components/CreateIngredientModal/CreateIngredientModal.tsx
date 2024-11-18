@@ -47,7 +47,7 @@ export function CreateIngredientModal({closeModal}: ModalProps) {
         <div className="modal-overlay">
             <div className="modal-body">
                 <button className="close-btn" onClick={closeModal}>×</button>
-                <h2>Cadastrar ingrediente</h2>
+                <h2>Cadastrar material</h2>
                 <form className="input-contlainer">
                     <Input label="Nome" value={nome} updateValue={setNome} />
                     <Input label="Preço por embalagem" value={precoPorEmbalagem} updateValue={setPrecoPorEmbalagem} />
