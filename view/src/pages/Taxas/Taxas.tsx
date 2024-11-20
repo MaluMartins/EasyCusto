@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Sidebar } from "../../components/Sidebar/Sidebar"
 import "./taxas.css"
 import { CreateTaxModal } from "../../components/CreateTaxModal/CreateTaxModal";
+import { TaxCard } from "../../components/TaxCard/TaxCard";
 
 export function Taxas() {
     const [isModalOpen, setIsModalOpen] = useState(false);
@@ -18,6 +19,8 @@ export function Taxas() {
 
             {isModalOpen && <CreateTaxModal closeModal={handleOpenModal} />}
             <button onClick={handleOpenModal} className="btn-secondary">Nova taxa</button>
+
+            <TaxCard />
         </div>
     )
 }
