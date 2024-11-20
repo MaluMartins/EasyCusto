@@ -38,6 +38,7 @@ export function CreateIngredientModal({ closeModal, type }: ModalProps) {
     const [horasPreparo, setHorasPreparo] = useState(0);
     const [minutosPreparo, setMinutosPreparo] = useState(0);
 
+    //não esquece de alterar aqui com a receita!!!!
     const { mutate, isSuccess } = useIngredientDataMutate();
 
     const submit = () => {
