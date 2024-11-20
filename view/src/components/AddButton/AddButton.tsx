@@ -2,7 +2,12 @@ import { CreateIngredientModal } from "../CreateIngredientModal/CreateIngredient
 import "./button.css"
 import { useState } from 'react';
 
-export function AddButton() {
+interface AddButtonProps {
+    type: "material" | "receita";
+}
+
+
+export function AddButton({ type }: AddButtonProps) {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const handleOpenModal = () => {
         setIsModalOpen(prev => !prev)
@@ -10,7 +15,7 @@ export function AddButton() {
 
     return (
         <div>
-            {isModalOpen && <CreateIngredientModal closeModal={handleOpenModal} />}
+            {isModalOpen && <CreateIngredientModal type={type} closeModal={handleOpenModal} />}
             <button id="addButton" onClick={handleOpenModal}>+</button>
         </div>
     )

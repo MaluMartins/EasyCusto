@@ -26,12 +26,13 @@ export function Salario() {
         <div id="salarioContainer">
             <Sidebar />
             <h1>Meu salário</h1>
-            <form className="input-contlainer">
+            <form className="input-container">
                 <Input label="Salário mensal desejado" value={salarioMensal} updateValue={setSalarioMensal} />
                 <Input label="Horas trabalhadas por dia" value={horasPorDia} updateValue={setHorasPorDia} />
                 <Input label="Dias trabalhados por semana" value={diasPorSemana} updateValue={setDiasPorSemana} />
                 <button className='btn-secondary'>Confirmar</button>
             </form>
+            <h4>Seu salário por hora trabalhada é: </h4>
         </div>
     )
 }

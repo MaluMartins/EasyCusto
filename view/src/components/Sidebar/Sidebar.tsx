@@ -19,7 +19,7 @@ export function Sidebar() {
                 <nav>
                     <ul>
                         <li>
-                            <Link to="/">Página principal</Link>
+                            <Link to="/home">Página principal</Link>
                         </li>
                         <li>
                             <Link to="/taxas">Minhas taxas</Link>
