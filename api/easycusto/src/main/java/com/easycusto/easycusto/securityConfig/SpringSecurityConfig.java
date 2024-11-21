@@ -43,6 +43,7 @@ public class SpringSecurityConfig {
 		        		.requestMatchers(HttpMethod.POST, "/auth/registrar").permitAll()
 		        		.requestMatchers(HttpMethod.POST, "/ingredientes/**").permitAll()
 		        		.requestMatchers(HttpMethod.POST, "/receitas/**").permitAll()
+		        		.requestMatchers(HttpMethod.POST, "/taxas/").permitAll()
 		        .anyRequest().permitAll()
 		        		)
 		        .addFilterBefore(securityFilter, UsernamePasswordAuthenticationFilter.class)

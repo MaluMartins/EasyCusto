@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { TaxData } from "../../interface/TaxData";
 import { useTaxDataMutate } from "../../hooks/useTaxDataMutate";
-import "../CreateIngredientModal/createIngredientModal.css"
+import "../CreateIngredientModal/createIngredientModal.css";
 
 interface InputProps {
     label: string,

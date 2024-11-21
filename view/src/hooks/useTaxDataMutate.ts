@@ -5,7 +5,7 @@ import { TaxData } from "../interface/TaxData";
 const API_URL = "http://localhost:8080";
 
 const postData = async (data: TaxData): AxiosPromise<any> => {
-    const response = axios.post(API_URL + "/taxas/criarTaxa", data);
+    const response = await axios.post(API_URL + "/taxas", data);
     return response;
 }
 
@@ -17,6 +17,9 @@ export function useTaxDataMutate() {
         retry: 2,
         onSuccess: () => {
             queryClient.invalidateQueries({ queryKey: ['tax-data'] })
+        },
+        onError: (error) => {
+            console.error("Erro ao cadastrar taxa:", error);
         }
     })
 

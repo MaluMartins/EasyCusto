@@ -3,8 +3,10 @@ import { Sidebar } from "../../components/Sidebar/Sidebar"
 import "./taxas.css"
 import { CreateTaxModal } from "../../components/CreateTaxModal/CreateTaxModal";
 import { TaxCard } from "../../components/TaxCard/TaxCard";
+import { useTaxData } from "../../hooks/useTaxData";
 
 export function Taxas() {
+    const { data } = useTaxData();
     const [isModalOpen, setIsModalOpen] = useState(false);
     const handleOpenModal = () => {
         setIsModalOpen(prev => !prev)
@@ -20,7 +22,12 @@ export function Taxas() {
             {isModalOpen && <CreateTaxModal closeModal={handleOpenModal} />}
             <button onClick={handleOpenModal} className="btn-secondary">Nova taxa</button>
 
-            <TaxCard />
+            <div className="taxas-list">
+                {data?.map(taxData => <TaxCard
+                    nome={taxData.nome}
+                    percentual={taxData.percentual}
+                />)}
+            </div>
         </div>
     )
 }
