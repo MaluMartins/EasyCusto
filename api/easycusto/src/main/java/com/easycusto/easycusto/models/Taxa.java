@@ -21,6 +21,7 @@ import lombok.Setter;
 @Table(name = "taxa")
 @Getter @Setter @NoArgsConstructor @AllArgsConstructor
 public class Taxa {
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id_taxa")
@@ -39,6 +40,11 @@ public class Taxa {
 		inverseJoinColumns = @JoinColumn(name = "id_receita")
 	)
 	private Set<Receita> receitas = new HashSet<>();
+	
+	public Taxa(String nome, double percentual) {
+		this.nome = nome;
+		this.percentual = percentual;
+	}
 }
 
 
