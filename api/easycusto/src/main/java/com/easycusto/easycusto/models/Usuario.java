@@ -21,14 +21,17 @@ public class Usuario implements Serializable, UserDetails {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "idUsuario")
-	private Long id_usuario;
+	@Column(name = "id_usuario")
+	private Long idUsuario;
 	
 	@Column(name = "username", nullable = false, unique = true, length = 100)
 	private String username;
 	
 	@Column(name = "senha", nullable = false, length = 100)
 	private String senha;
+	
+	@OneToOne(mappedBy = "usuario")
+    private Salario salario;
 	
 	@Enumerated(EnumType.STRING)
 	@Column(name = "role")

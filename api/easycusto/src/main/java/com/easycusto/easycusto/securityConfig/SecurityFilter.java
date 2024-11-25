@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 
+import com.easycusto.easycusto.repositories.UserDetailsRepository;
 import com.easycusto.easycusto.repositories.UsuarioRepository;
 import com.easycusto.easycusto.services.TokenService;
 
@@ -25,7 +26,7 @@ public class SecurityFilter extends OncePerRequestFilter {
 	TokenService tokenService;
 	
 	@Autowired
-	UsuarioRepository usuarioRepository;
+	UserDetailsRepository usuarioRepository;
 
 	@Override
 	protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
