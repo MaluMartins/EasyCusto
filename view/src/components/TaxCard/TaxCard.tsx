@@ -1,5 +1,8 @@
+import { useState } from "react";
 import "./taxCard.css"
 import { FaEdit, FaTrash } from 'react-icons/fa';
+import { TaxData } from "../../interface/TaxData";
+import { CreateTaxModal } from "../CreateTaxModal/CreateTaxModal";
 
 interface TaxCardProps {
     id_taxa: number | undefined,
@@ -9,6 +12,18 @@ interface TaxCardProps {
 }
 
 export function TaxCard({ id_taxa, nome, percentual, handleDelete }: TaxCardProps) {
+    const [isModalOpen, setIsModalOpen] = useState(false);
+    const [currentTax, setCurrentTax] = useState<TaxData | null>(null);
+
+    const handleOpenModal = () => {
+        setIsModalOpen(prev => !prev);
+    };
+
+    const openModalWithTax = (tax: TaxData) => {
+        setCurrentTax(tax);
+        setIsModalOpen(true);
+    };
+
     return (
         <div className="taxCard" key={id_taxa}>
             <div>
@@ -16,7 +31,10 @@ export function TaxCard({ id_taxa, nome, percentual, handleDelete }: TaxCardProp
                 <div>{percentual}%</div>
             </div>
             <div className="card-buttons">
-                <button className="edit-button"><FaEdit /></button>
+                <button className="edit-button" onClick={() => openModalWithTax({ id_taxa, nome, percentual })}>
+                    <FaEdit />
+                </button>
+                
                 <button className="delete-button" onClick={() => {
                     if (id_taxa !== undefined && window.confirm("Deseja realmente deletar esta taxa?")) {
                         handleDelete(id_taxa);
@@ -24,6 +42,7 @@ export function TaxCard({ id_taxa, nome, percentual, handleDelete }: TaxCardProp
                 }}><FaTrash /></button>
             </div>
 
+            {isModalOpen && <CreateTaxModal tax={currentTax} closeModal={handleOpenModal} />}
         </div>
     )
 }

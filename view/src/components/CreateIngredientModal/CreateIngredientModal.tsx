@@ -58,10 +58,11 @@ export function CreateIngredientModal({ closeModal, type, ingredient }: ModalPro
         if (ingredient?.id_ingrediente) {
             updateIngredient.mutate({ ...ingredientData, id_ingrediente: ingredient.id_ingrediente });
         } else {
-            mutateIngredient.mutate(ingredientData);
             if (!nome || !qtPorEmbalagem || !precoPorEmbalagem) {
                 alert('Preencha todos os campos');
                 return;
+            } else {
+                mutateIngredient.mutate(ingredientData);
             }
         }
     };

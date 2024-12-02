@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { TaxData } from "../../interface/TaxData";
 import { useTaxDataMutate } from "../../hooks/useTaxDataMutate";
-import "../CreateIngredientModal/createIngredientModal.css";
 
 interface InputProps {
     label: string,
@@ -19,13 +18,14 @@ const Input = ({ label, value, updateValue}: InputProps) => {
 }   
 
 interface ModalProps {
-    closeModal(): void
+    closeModal(): void,
+    tax: TaxData | null
 }
 
-export function CreateTaxModal({closeModal}: ModalProps) {
-    const [nome, setNome] = useState("");
-    const [percentual, setPercentual] = useState(0);
-    const {mutate, isSuccess} = useTaxDataMutate();
+export function CreateTaxModal({closeModal, tax}: ModalProps) {
+    const [nome, setNome] = useState(tax?.nome || "");
+    const [percentual, setPercentual] = useState(tax?.percentual || 0);
+    const { mutate: mutateTax, update: updateTax } = useTaxDataMutate();
 
     const submit = () => {
         const taxData: TaxData = {
@@ -33,19 +33,36 @@ export function CreateTaxModal({closeModal}: ModalProps) {
             percentual
         }
 
-        mutate(taxData)
+        if (tax?.id_taxa) {
+            updateTax.mutate({ ...taxData, id_taxa: tax.id_taxa });
+        } else {
+            if (!nome || !percentual) {
+                alert('Preencha todos os campos');
+                return;
+            } else {
+                mutateTax.mutate(taxData);
+            }
+        }
     }
 
     useEffect(() => {
-        if(!isSuccess) return 
-        closeModal();
-    }, [isSuccess])
+        if (mutateTax.isSuccess || updateTax.isSuccess) {
+            closeModal();
+        }
+    }, [mutateTax.isSuccess, updateTax.isSuccess]);
+
+    var operacao;
+    if (tax?.id_taxa) {
+        operacao = "Editar taxa"
+    } else {
+        operacao = "Cadastrar taxa"
+    }
 
     return(
         <div className="modal-overlay">
             <div className="modal-body">
                 <button className="close-btn" onClick={closeModal}>×</button>
-                <h2>Cadastrar taxa</h2>
+                <h2>{operacao}</h2>
                 <form className="input-container">
                     <Input label="Nome" value={nome} updateValue={setNome} />
                     <Input label="Taxa (%)" value={percentual} updateValue={setPercentual} />

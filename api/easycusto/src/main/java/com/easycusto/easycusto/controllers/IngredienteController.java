@@ -152,7 +152,7 @@ public class IngredienteController {
 	public ResponseEntity<Object> updateIngredient(@PathVariable Long id, @RequestBody @Valid IngredienteCreateDTO createDto) {
 		Optional<Ingrediente> ingredienteO = ingredienteRepository.findById(id);
 		if (ingredienteO.isEmpty()) {
-			return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Receita não encontrada.");
+			return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Ingrediente não encontrado.");
 		}
 		
 		Ingrediente ingrediente = ingredienteO.get();

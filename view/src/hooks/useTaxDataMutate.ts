@@ -9,6 +9,11 @@ const postData = async (data: TaxData): AxiosPromise<any> => {
     return response;
 }
 
+const updateData = async (data: TaxData): AxiosPromise<any> => {
+    const response = axios.put(API_URL + `/taxas/${data.id_taxa}`, data);
+    return response;
+};
+
 export function useTaxDataMutate() {
     const queryClient = useQueryClient();
 
@@ -23,5 +28,13 @@ export function useTaxDataMutate() {
         }
     })
 
-    return mutate;
+    const update = useMutation({
+        mutationFn: updateData,
+        retry: 2,
+        onSuccess: () => {
+            queryClient.invalidateQueries({ queryKey: ['tax-data'] });
+        }
+    });
+
+    return {mutate, update};
 }
