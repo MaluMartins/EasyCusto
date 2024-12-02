@@ -10,12 +10,16 @@
     justify-content: space-between;
 }
 
-.card-buttons button {
+.card-buttons .delete-button, .card-buttons .edit-button {
     background: none;
     border: none;
     cursor: pointer;
     font-size: 1.2rem;
     color: #a62424;
+}
+
+.nome-custo {
+    display: block;
 }
 
 @media (max-width: 768px) {

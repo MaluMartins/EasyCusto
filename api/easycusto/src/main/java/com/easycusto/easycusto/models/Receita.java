@@ -46,8 +46,8 @@ public class Receita {
 	@Column(name = "data_inclusao")
 	private LocalDate dataInclusao;
 	
-	@Column(name = "horas_producao")
-	private double horasProducao;
+	@Column(name = "tempo_producao")
+	private double tempoProducao;
 	
 	@OneToMany(mappedBy = "receita", cascade = CascadeType.ALL, orphanRemoval = true) 
     private Set<ReceitaIngrediente> receitaIngredientes = new HashSet<>();
@@ -78,20 +78,21 @@ public class Receita {
 	@Column(name = "lucro_por_unidade")
 	private double lucroPorUnidade;
 	
-	public Receita(String nome, int rendimento, double margemLucro) {
+	public Receita(String nome, int rendimento, double margemLucro, double tempoProducao) {
 		this.nome = nome;
 		this.rendimento = rendimento;
 		this.margemLucro = margemLucro;
 		this.dataInclusao = LocalDate.now();
+		this.tempoProducao = tempoProducao;
 	}
 	
 	public void calcularCustosFinais() {
 		double custoTotalIngredientes = 0;
 		double totalTaxas = 0;
-		double maoDeObra = this.salario.getSalarioPorHora() * this.horasProducao;
+		double maoDeObra = this.salario.getSalarioPorHora() * this.tempoProducao;
 		double margemLucroReal = 1 + this.margemLucro/100;
 		
-		for (ReceitaIngrediente ingrediente : receitaIngredientes) {
+		for (ReceitaIngrediente ingrediente : this.receitaIngredientes) {
 			custoTotalIngredientes += ingrediente.getCustoIngrediente();
 		}
 		

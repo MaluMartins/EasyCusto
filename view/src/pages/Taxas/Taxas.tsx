@@ -19,13 +19,13 @@ export function Taxas() {
 
     const handleDelete = async (id: number | undefined) => {
         try {
-          await axios.delete(`${API_URL}/taxas/${id}`);
-          setTaxas(taxas.filter(taxa => taxa.id !== id));
-          refetch();
+            await axios.delete(`${API_URL}/taxas/${id}`);
+            setTaxas(taxas.filter(taxa => taxa.id !== id));
+            refetch();
         } catch (error) {
-          console.error('Erro ao deletar taxa:', error);
+            console.error('Erro ao deletar taxa:', error);
         }
-      };
+    };
 
     return (
         <div id="taxasContainer">

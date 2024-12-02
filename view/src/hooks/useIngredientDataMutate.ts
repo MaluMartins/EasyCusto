@@ -9,6 +9,11 @@ const postData = async (data: IngredientData): AxiosPromise<any> => {
     return response;
 }
 
+const updateData = async (data: IngredientData): AxiosPromise<any> => {
+    const response = axios.put(API_URL + `/ingredientes/${data.id_ingrediente}`, data);
+    return response;
+};
+
 export function useIngredientDataMutate() {
     const queryClient = useQueryClient();
 
@@ -20,5 +25,13 @@ export function useIngredientDataMutate() {
         }
     })
 
-    return mutate;
+    const update = useMutation({
+        mutationFn: updateData,
+        retry: 2,
+        onSuccess: () => {
+            queryClient.invalidateQueries({ queryKey: ['ingredient-data'] });
+        }
+    });
+
+    return {mutate, update};
 }

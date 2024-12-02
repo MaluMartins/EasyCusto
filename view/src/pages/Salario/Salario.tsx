@@ -59,7 +59,6 @@ export function Salario() {
             }
         } catch (error) {
             console.error("Erro ao salvar salário:", error);
-            alert("Erro ao salvar salário!");
         }
         setRefresh(!refresh);
     };

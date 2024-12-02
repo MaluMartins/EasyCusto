@@ -10,7 +10,7 @@
     justify-content: space-between;
 }
 
-.card-buttons button {
+.card-buttons .delete-button, .card-buttons .edit-button {
     background: none;
     border: none;
     cursor: pointer;
