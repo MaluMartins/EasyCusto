@@ -59,6 +59,10 @@ public class Receita {
     @JoinColumn(name = "salario_id")
     private Salario salario;
 	
+	@ManyToOne
+    @JoinColumn(name = "categoria_id")
+    private Categoria categoria;
+	
 	//calculos finais
 	@Column(name = "custo_total")
 	private double custoTotal;
