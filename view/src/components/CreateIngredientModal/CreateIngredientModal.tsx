@@ -16,7 +16,8 @@ interface InputProps {
 interface ModalProps {
     type: "material" | "receita",
     closeModal(): void,
-    ingredient: IngredientData | null
+    ingredient: IngredientData | null,
+    recipe: RecipeData | null
 }
 
 const Input = ({ id, label, value, type, updateValue }: InputProps) => {
@@ -28,10 +29,10 @@ const Input = ({ id, label, value, type, updateValue }: InputProps) => {
     )
 }
 
-export function CreateIngredientModal({ closeModal, type, ingredient }: ModalProps) {
+export function CreateIngredientModal({ closeModal, type, ingredient, recipe }: ModalProps) {
 
     //material/ingrediente
-    const [nome, setNome] = useState(ingredient?.nome || "");
+    const [nome, setNome] = useState(ingredient?.nome || recipe?.nome || "");
     const [precoPorEmbalagem, setPrecoPorEmbalagem] = useState(ingredient?.precoPorEmbalagem || 0);
     const [qtPorEmbalagem, setQtPorEmbalagem] = useState(ingredient?.qtPorEmbalagem || 0);
     const [unidadeMedidaQtEmbalagem, setUnidadeMedidaQtEmbalagem] = useState("");
@@ -39,13 +40,13 @@ export function CreateIngredientModal({ closeModal, type, ingredient }: ModalPro
 
     //receita
     const [unidadeMedidaRendimento, setUnidadeMedidaRendimento] = useState("");
-    const [rendimento, setRendimento] = useState(0);
-    const [margemLucro, setMargemLucro] = useState(0);
-    const [horasPreparo, setHorasPreparo] = useState(0);
-    const [minutosPreparo, setMinutosPreparo] = useState(0);
+    const [rendimento, setRendimento] = useState(recipe?.rendimento || 0);
+    const [margemLucro, setMargemLucro] = useState(recipe?.margemLucro || 0);
+    const [horasPreparo, setHorasPreparo] = useState(recipe?.horasPreparo || 0);
+    const [minutosPreparo, setMinutosPreparo] = useState(recipe?.minutosPreparo || 0);
 
     const { mutate: mutateIngredient, update: updateIngredient } = useIngredientDataMutate();
-    const { mutate: mutateRecipe, isSuccess: isRecipeSuccess } = useRecipeDataMutate();
+    const { mutate: mutateRecipe, update: updateRecipe } = useRecipeDataMutate();
     
     const submitIngrediente = () => {
         const ingredientData: IngredientData = {
@@ -83,18 +84,27 @@ export function CreateIngredientModal({ closeModal, type, ingredient }: ModalPro
             minutosPreparo
         };
 
-        mutateRecipe(recipeData);
+        if (recipe?.id_receita) {
+            updateRecipe.mutate({ ...recipeData, id_receita: recipe.id_receita });
+        } else {
+            if (!nome || !rendimento || !margemLucro) {
+                alert('Preencha todos os campos');
+                return;
+            } else {
+                mutateRecipe.mutate(recipeData);
+            }
+        }
     };
 
 
     useEffect(() => {
-        if (isRecipeSuccess) {
+        if (mutateRecipe.isSuccess || updateRecipe.isSuccess) {
             closeModal();
         }
-    }, [isRecipeSuccess]);
+    }, [mutateRecipe.isSuccess, updateRecipe.isSuccess]);
 
     var operacao;
-    if (ingredient?.id_ingrediente) {
+    if (ingredient?.id_ingrediente || recipe?.id_receita) {
         operacao = "Editar"
     } else {
         operacao = "Cadastrar"
@@ -138,7 +148,8 @@ export function CreateIngredientModal({ closeModal, type, ingredient }: ModalPro
                                 <select id="unidade-medida" value={selectedUnit} onChange={handleChange}>
                                     <option value="g">g</option>
                                     <option value="un">un</option>
-                                </select>                            </div>
+                                </select>                            
+                            </div>
                             <Input id="" label="Margem de lucro (%)" value={margemLucro} type="number" updateValue={setMargemLucro} />
 
                             <label>Tempo de preparo</label>

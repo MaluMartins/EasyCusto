@@ -1,10 +1,10 @@
 import axios, { AxiosPromise } from "axios"
 import { useQuery } from "@tanstack/react-query"
-import { RecipeHeaderData } from "../interface/RecipeHeaderData";
+import { RecipeData } from "../interface/RecipeData";
 
 const API_URL = "http://localhost:8080";
 
-const fetchData = async (): AxiosPromise<RecipeHeaderData[]> => {
+const fetchData = async (): AxiosPromise<RecipeData[]> => {
     const response = axios.get(API_URL + "/receitas");
     return response;
 }

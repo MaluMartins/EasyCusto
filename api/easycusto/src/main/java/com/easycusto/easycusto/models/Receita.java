@@ -49,6 +49,12 @@ public class Receita {
 	@Column(name = "tempo_producao")
 	private double tempoProducao;
 	
+	@Column(name = "horas_preparo")
+	private double horasPreparo;
+	
+	@Column(name = "minutos_preparo")
+	private double minutosPreparo;
+	
 	@OneToMany(mappedBy = "receita", cascade = CascadeType.ALL, orphanRemoval = true) 
     private Set<ReceitaIngrediente> receitaIngredientes = new HashSet<>();
 	
@@ -82,11 +88,13 @@ public class Receita {
 	@Column(name = "lucro_por_unidade")
 	private double lucroPorUnidade;
 	
-	public Receita(String nome, int rendimento, double margemLucro, double tempoProducao) {
+	public Receita(String nome, int rendimento, double margemLucro, double horasPreparo, double minutosPreparo, double tempoProducao) {
 		this.nome = nome;
 		this.rendimento = rendimento;
 		this.margemLucro = margemLucro;
 		this.dataInclusao = LocalDate.now();
+		this.horasPreparo = horasPreparo;
+		this.minutosPreparo = minutosPreparo;
 		this.tempoProducao = tempoProducao;
 	}
 	

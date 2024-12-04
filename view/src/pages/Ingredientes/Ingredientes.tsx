@@ -45,7 +45,7 @@ export function Ingredientes() {
             </div>
 
             <div>
-            {isModalOpen && <CreateIngredientModal type="material" ingredient={null} closeModal={handleOpenModal} />}
+            {isModalOpen && <CreateIngredientModal type="material" ingredient={null} recipe={null} closeModal={handleOpenModal} />}
             <button id="addButton" onClick={handleOpenModal}>+</button>
         </div>
         </div>

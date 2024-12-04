@@ -42,7 +42,7 @@ export function IngredientCard({ id_ingrediente, nome, precoPorEmbalagem, qtPorE
                     }
                 }}><FaTrash /></button>
             </div>
-            {isModalOpen && <CreateIngredientModal type="material" ingredient={currentIngredient} closeModal={handleOpenModal} />}
+            {isModalOpen && <CreateIngredientModal type="material" ingredient={currentIngredient} recipe={null} closeModal={handleOpenModal} />}
 
         </div>
     )
