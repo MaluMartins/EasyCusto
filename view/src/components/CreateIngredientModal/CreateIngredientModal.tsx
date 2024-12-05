@@ -30,9 +30,9 @@ const Input = ({ id, label, value, type, updateValue }: InputProps) => {
 }
 
 export function CreateIngredientModal({ closeModal, type, ingredient, recipe }: ModalProps) {
-
-    //material/ingrediente
     const [nome, setNome] = useState(ingredient?.nome || recipe?.nome || "");
+    
+    //material/ingrediente
     const [precoPorEmbalagem, setPrecoPorEmbalagem] = useState(ingredient?.precoPorEmbalagem || 0);
     const [qtPorEmbalagem, setQtPorEmbalagem] = useState(ingredient?.qtPorEmbalagem || 0);
     const [unidadeMedidaQtEmbalagem, setUnidadeMedidaQtEmbalagem] = useState("");

@@ -34,7 +34,7 @@ export function Taxas() {
             <h4>Cadastre aqui taxas como maquininha, delivery e gastos incalculáveis como água e luz.</h4>
             <p>Obs: As taxas cadastradas serão contabilizadas em cada receita de forma individual.</p>
 
-            {isModalOpen && <CreateTaxModal closeModal={handleOpenModal} />}
+            {isModalOpen && <CreateTaxModal tax={null} closeModal={handleOpenModal} />}
             <button onClick={handleOpenModal} className="btn-secondary">Nova taxa</button>
 
             <div className="taxas-list">
