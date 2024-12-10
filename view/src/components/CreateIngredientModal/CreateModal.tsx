@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useIngredientDataMutate } from '../../hooks/useIngredientDataMutate';
 import { IngredientData } from '../../interface/IngredientData';
-import "./createIngredientModal.css";
+import "./createModal.css";
 import { RecipeData } from '../../interface/RecipeData';
 import { useRecipeDataMutate } from '../../hooks/useRecipeDataMutate';
 
@@ -39,7 +39,7 @@ export function CreateIngredientModal({ closeModal, type, ingredient, recipe }: 
     const [custoPorUnidade, setCustoPorUnidade] = useState(0);
 
     //receita
-    const [unidadeMedidaRendimento, setUnidadeMedidaRendimento] = useState("");
+    const [unidadeRendimento, setUnidadeRendimento] = useState(recipe?.unidadeRendimento || "g");
     const [rendimento, setRendimento] = useState(recipe?.rendimento || 0);
     const [margemLucro, setMargemLucro] = useState(recipe?.margemLucro || 0);
     const [horasPreparo, setHorasPreparo] = useState(recipe?.horasPreparo || 0);
@@ -79,6 +79,7 @@ export function CreateIngredientModal({ closeModal, type, ingredient, recipe }: 
         const recipeData: RecipeData = {
             nome,
             rendimento,
+            unidadeRendimento,
             margemLucro,
             horasPreparo,
             minutosPreparo
@@ -110,9 +111,13 @@ export function CreateIngredientModal({ closeModal, type, ingredient, recipe }: 
         operacao = "Cadastrar"
     }
 
+    const handleChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+        setUnidadeRendimento(event.target.value);
+    };
+
     const [selectedUnit, setSelectedUnit] = useState("g");
 
-    const handleChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    const handleChangeIng = (event: React.ChangeEvent<HTMLSelectElement>) => {
         setSelectedUnit(event.target.value);
     };
 
@@ -131,7 +136,7 @@ export function CreateIngredientModal({ closeModal, type, ingredient, recipe }: 
                             <label>Quantidade por embalagem</label>
                             <div className="linha-unidade">
                                 <Input label="" value={qtPorEmbalagem} updateValue={setQtPorEmbalagem} />
-                                <select id="unidade-medida-qt" value={selectedUnit} onChange={handleChange}>
+                                <select id="unidade-medida-qt" value={selectedUnit} onChange={handleChangeIng}>
                                     <option value="g">g</option>
                                     <option value="un">un</option>
                                 </select>
@@ -145,8 +150,9 @@ export function CreateIngredientModal({ closeModal, type, ingredient, recipe }: 
                             <label>Rendimento</label>
                             <div className="linha-unidade">
                                 <Input id="rendimento" label="" value={rendimento} type="number" updateValue={setRendimento} />
-                                <select id="unidade-medida" value={selectedUnit} onChange={handleChange}>
+                                <select id="unidade-medida" value={unidadeRendimento} onChange={handleChange}>
                                     <option value="g">g</option>
+                                    <option value="kg">kg</option>
                                     <option value="un">un</option>
                                 </select>                            
                             </div>
@@ -154,8 +160,16 @@ export function CreateIngredientModal({ closeModal, type, ingredient, recipe }: 
 
                             <label>Tempo de preparo</label>
                             <div className="linha-unidade">
-                                <Input id="horas" label="" value={horasPreparo} type="number" updateValue={setHorasPreparo} />
-                                <Input id="minutos" label="" value={minutosPreparo} type="number" updateValue={setMinutosPreparo} />
+                                <div className="block">
+                                    <label>horas</label>
+                                    <br />
+                                    <Input id="horas" label="" value={horasPreparo} type="number" updateValue={setHorasPreparo} />
+                                </div>
+                                <div className="block">
+                                    <label>min</label>
+                                    <br />
+                                    <Input id="minutos" label="" value={minutosPreparo} type="number" updateValue={setMinutosPreparo} />
+                                </div>
                             </div>
                         </>
 

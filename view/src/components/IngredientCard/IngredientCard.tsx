@@ -1,7 +1,7 @@
 import { useState } from "react";
 import "./ingredientCard.css"
 import { FaEdit, FaTrash } from 'react-icons/fa';
-import { CreateIngredientModal } from "../CreateIngredientModal/CreateIngredientModal";
+import { CreateIngredientModal } from "../CreateIngredientModal/CreateModal";
 import { IngredientData } from "../../interface/IngredientData";
 
 interface IngredientCardProps {

@@ -21,7 +21,7 @@ export function ReceitaItens() {
         return <div className="not-found">Receita não encontrada.</div>;
     }
 
-    const { nome, rendimento, margemLucro, horasPreparo, minutosPreparo } = data.data;
+    const { nome, rendimento, unidadeRendimento, margemLucro, horasPreparo, minutosPreparo } = data.data;
 
     return (
         <div id="receitaContainer">
@@ -29,6 +29,7 @@ export function ReceitaItens() {
             <RecipeDetails
                 nome={nome}
                 rendimento={rendimento}
+                unidadeRendimento={unidadeRendimento}
                 margemLucro={margemLucro}
                 horasPreparo={horasPreparo}
                 minutosPreparo={minutosPreparo}

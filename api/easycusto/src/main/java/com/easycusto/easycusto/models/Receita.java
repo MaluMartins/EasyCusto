@@ -40,6 +40,9 @@ public class Receita {
 	@Column(name = "rendimento")
 	private int rendimento;
 	
+	@Column(name = "unidade_rendimento")
+	private String unidadeRendimento;
+	
 	@Column(name = "margem_lucro")
 	private double margemLucro;
 	
@@ -88,9 +91,10 @@ public class Receita {
 	@Column(name = "lucro_por_unidade")
 	private double lucroPorUnidade;
 	
-	public Receita(String nome, int rendimento, double margemLucro, double horasPreparo, double minutosPreparo, double tempoProducao) {
+	public Receita(String nome, int rendimento, String unidadeRendimento, double margemLucro, double horasPreparo, double minutosPreparo, double tempoProducao) {
 		this.nome = nome;
 		this.rendimento = rendimento;
+		this.unidadeRendimento = unidadeRendimento;
 		this.margemLucro = margemLucro;
 		this.dataInclusao = LocalDate.now();
 		this.horasPreparo = horasPreparo;

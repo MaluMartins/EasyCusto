@@ -3,6 +3,7 @@ import "./recipeDetails.css";
 interface RecipeDetailsProps {
     nome: string;
     rendimento: number;
+    unidadeRendimento: string;
     margemLucro: number;
     horasPreparo: number;
     minutosPreparo: number;
@@ -11,6 +12,7 @@ interface RecipeDetailsProps {
 export function RecipeDetails({
     nome,
     rendimento,
+    unidadeRendimento,
     margemLucro,
     horasPreparo,
     minutosPreparo,
@@ -21,7 +23,7 @@ export function RecipeDetails({
             <div className="details-grid">
                 <div className="detail-item">
                     <span className="detail-label">Rendimento:</span>
-                    <span className="detail-value">{rendimento} porções</span>
+                    <span className="detail-value">{rendimento} {unidadeRendimento}</span>
                 </div>
                 <div className="detail-item">
                     <span className="detail-label">Margem de Lucro:</span>

@@ -126,12 +126,15 @@
 }
 
 #horas {
-    max-width: 48%;
-    margin-right: 1em;
+    max-width: 95%; 
 }
 
 #minutos {
-    max-width: 48%;
+    max-width: 95%;
+}
+
+.block {
+    display: block!important;
 }
 
 

@@ -4,7 +4,7 @@ import { SearchBar } from "../../components/SearchBar/SearchBar";
 import { useRecipeData } from "../../hooks/useRecipeData";
 import "./receitas.css"
 import axios from "axios";
-import { CreateIngredientModal } from "../../components/CreateIngredientModal/CreateIngredientModal";
+import { CreateIngredientModal } from "../../components/CreateIngredientModal/CreateModal";
 
 const API_URL = 'http://localhost:8080';
 

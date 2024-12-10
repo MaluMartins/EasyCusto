@@ -48,7 +48,7 @@ public class ReceitaController {
 	@PostMapping("/criarReceita")
 	public ResponseEntity<Receita> createRecipe(@RequestBody @Valid ReceitaDTO dto) {
 		double tempoPreparo = dto.horasPreparo() + (dto.minutosPreparo()/60);
-		Receita receita = new Receita(dto.nome(), dto.rendimento(), dto.margemLucro(), dto.horasPreparo(), dto.minutosPreparo(), tempoPreparo);
+		Receita receita = new Receita(dto.nome(), dto.rendimento(), dto.unidadeRendimento(), dto.margemLucro(), dto.horasPreparo(), dto.minutosPreparo(), tempoPreparo);
 		this.receitaRepository.save(receita);
 		
 		return ResponseEntity.ok(receita);
