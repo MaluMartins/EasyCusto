@@ -9,13 +9,14 @@ interface RecipeProps {
     id_receita: number | undefined,
     nome: string,
     rendimento: number,
+    unidadeRendimento: string,
     margemLucro: number,
     horasPreparo: number,
     minutosPreparo: number,
     handleDelete: (id: number | undefined) => void
 }
 
-export function RecipeCard({ id_receita, nome, rendimento, margemLucro, horasPreparo, minutosPreparo, handleDelete }: RecipeProps) {
+export function RecipeCard({ id_receita, nome, rendimento, unidadeRendimento, margemLucro, horasPreparo, minutosPreparo, handleDelete }: RecipeProps) {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [currentRecipe, setCurrentRecipe] = useState<RecipeData | null>(null);
     const navigate = useNavigate();
@@ -41,7 +42,7 @@ export function RecipeCard({ id_receita, nome, rendimento, margemLucro, horasPre
                 <div onClick={goToDetailsPage} style={{ cursor: "pointer", textDecoration: "underline" }}>{nome}</div>
             </div>
             <div className="card-buttons">
-                <button className="edit-button" onClick={() => openModalWithRecipe({ id_receita, nome, rendimento, margemLucro, horasPreparo, minutosPreparo })}><FaEdit /></button>
+                <button className="edit-button" onClick={() => openModalWithRecipe({ id_receita, nome, rendimento, unidadeRendimento, margemLucro, horasPreparo, minutosPreparo })}><FaEdit /></button>
 
                 <button className="delete-button" onClick={() => {
                     if (id_receita !== undefined && window.confirm("Deseja realmente deletar esta receita?")) {

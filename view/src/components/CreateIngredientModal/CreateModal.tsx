@@ -39,11 +39,18 @@ export function CreateIngredientModal({ closeModal, type, ingredient, recipe }: 
     const [custoPorUnidade, setCustoPorUnidade] = useState(0);
 
     //receita
-    const [unidadeRendimento, setUnidadeRendimento] = useState(recipe?.unidadeRendimento || "g");
     const [rendimento, setRendimento] = useState(recipe?.rendimento || 0);
     const [margemLucro, setMargemLucro] = useState(recipe?.margemLucro || 0);
     const [horasPreparo, setHorasPreparo] = useState(recipe?.horasPreparo || 0);
     const [minutosPreparo, setMinutosPreparo] = useState(recipe?.minutosPreparo || 0);
+    const [unidadeRendimento, setUnidadeRendimento] = useState("g");
+
+    useEffect(() => {
+        console.log(recipe?.unidadeRendimento)
+        if (recipe?.unidadeRendimento) {
+            setUnidadeRendimento(recipe.unidadeRendimento);
+        }
+    }, [recipe]);
 
     const { mutate: mutateIngredient, update: updateIngredient } = useIngredientDataMutate();
     const { mutate: mutateRecipe, update: updateRecipe } = useRecipeDataMutate();

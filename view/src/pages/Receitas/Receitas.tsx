@@ -44,6 +44,7 @@ export function Receitas() {
                     id_receita={recipeData.id_receita}
                     nome={recipeData.nome}
                     rendimento={recipeData.rendimento}
+                    unidadeRendimento={recipeData.unidadeRendimento}
                     margemLucro={recipeData.margemLucro}
                     horasPreparo={recipeData.horasPreparo}
                     minutosPreparo={recipeData.minutosPreparo}
