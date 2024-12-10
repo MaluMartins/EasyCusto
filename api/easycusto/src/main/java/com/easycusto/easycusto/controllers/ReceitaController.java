@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.easycusto.easycusto.dtos.ReceitaDTO;
@@ -66,6 +67,12 @@ public class ReceitaController {
 		Receita receita = receitaService.findById(id);
 		return ResponseEntity.ok(receita);
 	}
+	
+	@GetMapping("/pesquisa")
+    public ResponseEntity<List<Receita>> pesquisar(@RequestParam String termo) {
+        List<Receita> receitas = receitaService.buscarReceitas(termo);
+        return ResponseEntity.ok(receitas);
+    }
 	
 	@PutMapping("{id}")
 	public ResponseEntity<Object> updateRecipe(@PathVariable Long id, @RequestBody @Valid ReceitaDTO createDto) {
