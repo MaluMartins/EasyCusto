@@ -9,15 +9,18 @@ import { CreateIngredientModal } from "../../components/CreateIngredientModal/Cr
 const API_URL = 'http://localhost:8080';
 
 export function Receitas() {
-    const { data, refetch } = useRecipeData();
+    const { data: allReceitas, refetch } = useRecipeData(); // Receitas iniciais
+    const [filteredReceitas, setFilteredReceitas] = useState<any[]>([]); // Receitas da busca
 
-    const [receitas, setReceitas] = useState<any[]>([]);
+  const handleSearchResults = (results: any[]) => {
+    setFilteredReceitas(results);
+  };
 
     const handleDelete = async (id: number | undefined) => {
         try {
             await axios.delete(`${API_URL}/receitas/${id}`);
-            setReceitas(receitas.filter(receita => receita.id !== id));
-            refetch();
+            refetch(); // Refaz a busca inicial
+            setFilteredReceitas((prev) => prev.filter((receita) => receita.id !== id));
         } catch (error) {
             console.error('Erro ao deletar receitas:', error);
         }
@@ -28,10 +31,12 @@ export function Receitas() {
         setIsModalOpen(prev => !prev)
     }
 
+    const receitasParaExibir = filteredReceitas.length > 0 ? filteredReceitas : allReceitas;
+
     return (
         <div id="receitasContainer">
             <h1>Receitas</h1>
-            <SearchBar />
+            <SearchBar onSearchResults={handleSearchResults}/>
             {/* <div className="categorias">
                 <CategoryCard />
                 <CategoryCard />
@@ -39,7 +44,7 @@ export function Receitas() {
                 <CategoryCard />
             </div> */}
             <div className="receitas-list">
-                {data?.map(recipeData => <RecipeCard
+                {receitasParaExibir?.map((recipeData) => <RecipeCard
                     key={recipeData.id_receita}
                     id_receita={recipeData.id_receita}
                     nome={recipeData.nome}
