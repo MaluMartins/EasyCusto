@@ -31,12 +31,12 @@ const Input = ({ id, label, value, type, updateValue }: InputProps) => {
 
 export function CreateIngredientModal({ closeModal, type, ingredient, recipe }: ModalProps) {
     const [nome, setNome] = useState(ingredient?.nome || recipe?.nome || "");
-    
+
     //material/ingrediente
     const [precoPorEmbalagem, setPrecoPorEmbalagem] = useState(ingredient?.precoPorEmbalagem || 0);
     const [qtPorEmbalagem, setQtPorEmbalagem] = useState(ingredient?.qtPorEmbalagem || 0);
     const [unidadeMedida, setUnidadeMedida] = useState("g");
-    const [custoPorUnidade, setCustoPorUnidade] = useState(0);
+    const [custoPorUnidade] = useState(0);
 
     //receita
     const [rendimento, setRendimento] = useState(recipe?.rendimento || 0);
@@ -55,7 +55,7 @@ export function CreateIngredientModal({ closeModal, type, ingredient, recipe }: 
 
     const { mutate: mutateIngredient, update: updateIngredient } = useIngredientDataMutate();
     const { mutate: mutateRecipe, update: updateRecipe } = useRecipeDataMutate();
-    
+
     const submitIngrediente = () => {
         const ingredientData: IngredientData = {
             nome,
@@ -134,7 +134,7 @@ export function CreateIngredientModal({ closeModal, type, ingredient, recipe }: 
                 <button className="close-btn" onClick={closeModal}>×</button>
                 <h2>{type === "material" ? operacao + " Material" : operacao + " Receita"}</h2>
                 <form className="input-container">
-                    
+
                     {type === "material" && (
                         <>
                             <Input label="Nome" value={nome} updateValue={setNome} />
@@ -161,7 +161,7 @@ export function CreateIngredientModal({ closeModal, type, ingredient, recipe }: 
                                     <option value="g">g</option>
                                     <option value="kg">kg</option>
                                     <option value="un">un</option>
-                                </select>                            
+                                </select>
                             </div>
                             <Input id="" label="Margem de lucro (%)" value={margemLucro} type="number" updateValue={setMargemLucro} />
 
@@ -182,7 +182,10 @@ export function CreateIngredientModal({ closeModal, type, ingredient, recipe }: 
 
                     )}
 
-                    <button onClick={type === "material" ? submitIngrediente : submitReceita} className='btn-secondary'>Confirmar</button>
+                    <button onClick={(e) => {
+                        e.preventDefault(); // Evita recarregar ou mudar a página
+                        type === "material" ? submitIngrediente() : submitReceita();
+                    }} className='btn-secondary'>Confirmar</button>
                 </form>
             </div>
         </div>
