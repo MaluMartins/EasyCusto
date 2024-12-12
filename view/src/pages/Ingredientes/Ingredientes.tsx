@@ -46,6 +46,7 @@ export function Ingredientes() {
                     precoPorEmbalagem={ingredientData.precoPorEmbalagem}
                     qtPorEmbalagem={ingredientData.qtPorEmbalagem}
                     custoPorUnidade={ingredientData.custoPorUnidade}
+                    unidadeMedida={ingredientData.unidadeMedida}
                     handleDelete={handleDelete}
                 />)}
             </div>

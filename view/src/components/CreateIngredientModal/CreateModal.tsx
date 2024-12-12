@@ -35,7 +35,7 @@ export function CreateIngredientModal({ closeModal, type, ingredient, recipe }: 
     //material/ingrediente
     const [precoPorEmbalagem, setPrecoPorEmbalagem] = useState(ingredient?.precoPorEmbalagem || 0);
     const [qtPorEmbalagem, setQtPorEmbalagem] = useState(ingredient?.qtPorEmbalagem || 0);
-    const [unidadeMedidaQtEmbalagem, setUnidadeMedidaQtEmbalagem] = useState("");
+    const [unidadeMedida, setUnidadeMedida] = useState("g");
     const [custoPorUnidade, setCustoPorUnidade] = useState(0);
 
     //receita
@@ -46,11 +46,12 @@ export function CreateIngredientModal({ closeModal, type, ingredient, recipe }: 
     const [unidadeRendimento, setUnidadeRendimento] = useState("g");
 
     useEffect(() => {
-        console.log(recipe?.unidadeRendimento)
         if (recipe?.unidadeRendimento) {
             setUnidadeRendimento(recipe.unidadeRendimento);
+        } else if (ingredient?.unidadeMedida) {
+            setUnidadeMedida(ingredient.unidadeMedida);
         }
-    }, [recipe]);
+    }, [recipe, ingredient]);
 
     const { mutate: mutateIngredient, update: updateIngredient } = useIngredientDataMutate();
     const { mutate: mutateRecipe, update: updateRecipe } = useRecipeDataMutate();
@@ -60,7 +61,8 @@ export function CreateIngredientModal({ closeModal, type, ingredient, recipe }: 
             nome,
             precoPorEmbalagem,
             qtPorEmbalagem,
-            custoPorUnidade
+            custoPorUnidade,
+            unidadeMedida
         };
 
         if (ingredient?.id_ingrediente) {
@@ -122,10 +124,8 @@ export function CreateIngredientModal({ closeModal, type, ingredient, recipe }: 
         setUnidadeRendimento(event.target.value);
     };
 
-    const [selectedUnit, setSelectedUnit] = useState("g");
-
     const handleChangeIng = (event: React.ChangeEvent<HTMLSelectElement>) => {
-        setSelectedUnit(event.target.value);
+        setUnidadeMedida(event.target.value);
     };
 
     return (
@@ -143,7 +143,7 @@ export function CreateIngredientModal({ closeModal, type, ingredient, recipe }: 
                             <label>Quantidade por embalagem</label>
                             <div className="linha-unidade">
                                 <Input label="" value={qtPorEmbalagem} updateValue={setQtPorEmbalagem} />
-                                <select id="unidade-medida-qt" value={selectedUnit} onChange={handleChangeIng}>
+                                <select id="unidade-medida-qt" value={unidadeMedida} onChange={handleChangeIng}>
                                     <option value="g">g</option>
                                     <option value="un">un</option>
                                 </select>

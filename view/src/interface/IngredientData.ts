@@ -3,5 +3,6 @@ export interface IngredientData {
     nome: string,
     precoPorEmbalagem: number,
     qtPorEmbalagem: number,
-    custoPorUnidade: number
+    custoPorUnidade: number,
+    unidadeMedida: string
 }

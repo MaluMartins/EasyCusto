@@ -58,7 +58,7 @@ public class IngredienteController {
 	//criar novo ingrediente
 	@PostMapping("/criarIngrediente")
 	public ResponseEntity<Ingrediente> createIngredient(@RequestBody @Valid IngredienteCreateDTO dto) {
-		Ingrediente novoIngrediente = new Ingrediente(dto.nome(), dto.precoPorEmbalagem(), dto.qtPorEmbalagem());
+		Ingrediente novoIngrediente = new Ingrediente(dto.nome(), dto.precoPorEmbalagem(), dto.qtPorEmbalagem(), dto.unidadeMedida());
 		this.ingredienteRepository.save(novoIngrediente);
 		
 		return ResponseEntity.ok(novoIngrediente);
@@ -67,7 +67,7 @@ public class IngredienteController {
 	//criar novo ingrediente e adicionar em uma receita (não usado por enquanto)
 	@PostMapping("criarIngredienteEmReceita/{id_receita}")
 	public ResponseEntity<Ingrediente> createRecipeIngredient(@RequestBody @Valid IngredienteAddDTO dto, @PathVariable Long id_receita) {
-		Ingrediente novoIngrediente = new Ingrediente(dto.nome(), dto.precoPorEmbalagem(), dto.qtPorEmbalagem());
+		Ingrediente novoIngrediente = new Ingrediente(dto.nome(), dto.precoPorEmbalagem(), dto.qtPorEmbalagem(), dto.unidadeMedida());
 		this.ingredienteRepository.save(novoIngrediente);
 		
 		double precoPorEmbalagem = novoIngrediente.getPrecoPorEmbalagem();

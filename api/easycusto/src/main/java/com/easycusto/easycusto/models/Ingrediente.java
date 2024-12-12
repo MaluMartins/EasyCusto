@@ -1,6 +1,7 @@
 package com.easycusto.easycusto.models;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -44,14 +45,20 @@ public class Ingrediente {
 	@Column(name = "custo_por_unidade")
 	private double custoPorUnidade;
 	
+	@Column(name = "unidade_medida")
+	private String unidadeMedida;
+	
 	@OneToMany(mappedBy = "ingrediente", cascade = CascadeType.ALL, orphanRemoval = true) 
 	@JsonIgnore
     private Set<ReceitaIngrediente> receitaIngredientes = new HashSet<>();
 	
-	public Ingrediente(String nome, double precoPorEmbalagem, double qtPorEmbalagem) {
+	public Ingrediente(String nome, double precoPorEmbalagem, double qtPorEmbalagem, String unidadeMedida) {
         this.nome = nome;
         this.precoPorEmbalagem = precoPorEmbalagem;
         this.qtPorEmbalagem = qtPorEmbalagem;
-        this.custoPorUnidade = precoPorEmbalagem / qtPorEmbalagem;
+        this.unidadeMedida = unidadeMedida;
+        this.custoPorUnidade = BigDecimal.valueOf(precoPorEmbalagem / qtPorEmbalagem)
+                .setScale(3, RoundingMode.HALF_UP)
+                .doubleValue();
     }
 }
