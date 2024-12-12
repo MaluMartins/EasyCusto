@@ -1,5 +1,7 @@
 package com.easycusto.easycusto.services;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,4 +18,8 @@ public class IngredienteService {
 		return ingredienteRepository.findById(id).orElseThrow(
 				() -> new EntityNotFoundException("Id not found: " + id));
 	}
+	
+	public List<Ingrediente> buscarIngredientes(String termo) {
+        return ingredienteRepository.buscarPorNome(termo);
+    }
 }

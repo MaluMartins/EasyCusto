@@ -9,14 +9,18 @@ import { CreateIngredientModal } from "../../components/CreateIngredientModal/Cr
 const API_URL = 'http://localhost:8080';
 
 export function Ingredientes() {
-    const { data, refetch } = useIngredientData();
-    const [ingredientes, setIngredientes] = useState<any[]>([]);
+    const { data: allIngredients, refetch } = useIngredientData(); 
+    const [filteredIngredients, setFilteredIngredients] = useState<any[]>([]);
+
+    const handleSearchResults = (results: any[]) => {
+        setFilteredIngredients(results);
+    };
 
     const handleDelete = async (id: number | undefined) => {
         try {
             await axios.delete(`${API_URL}/ingredientes/${id}`);
-            setIngredientes(ingredientes.filter(ingrediente => ingrediente.id !== id));
             refetch();
+            setFilteredIngredients((prev) => prev.filter((ingrediente) => ingrediente.id !== id));
         } catch (error) {
             console.error('Erro ao deletar ingrediente:', error);
         }
@@ -27,13 +31,15 @@ export function Ingredientes() {
         setIsModalOpen(prev => !prev)
     }
 
+    const ingredientesParaExibir = filteredIngredients.length > 0 ? filteredIngredients : allIngredients;
+
     return (
         <div id="ingredientesContainer">
             <h1>Materiais</h1>
-            <SearchBar />
+            <SearchBar onSearchResults={handleSearchResults} type="material" />
 
             <div className="materiais-list">
-                {data?.map(ingredientData => <IngredientCard
+                {ingredientesParaExibir?.map((ingredientData) => <IngredientCard
                     key={ingredientData.id_ingrediente}
                     id_ingrediente={ingredientData.id_ingrediente}
                     nome={ingredientData.nome}
@@ -45,10 +51,10 @@ export function Ingredientes() {
             </div>
 
             <div>
-            {isModalOpen && <CreateIngredientModal type="material" ingredient={null} recipe={null} closeModal={handleOpenModal} />}
-            <button id="addButton" onClick={handleOpenModal}>+</button>
+                {isModalOpen && <CreateIngredientModal type="material" ingredient={null} recipe={null} closeModal={handleOpenModal} />}
+                <button id="addButton" onClick={handleOpenModal}>+</button>
+            </div>
         </div>
-        </div>
-        
+
     )
 }

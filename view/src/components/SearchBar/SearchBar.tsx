@@ -5,10 +5,11 @@ import { LuSearch } from "react-icons/lu";
 import axios from "axios";
 
 interface SearchBarProps {
-    onSearchResults: (results: RecipeData[]) => void; 
+    onSearchResults: (results: RecipeData[]) => void
+    type: "material" | "receita"
   };
 
-export function SearchBar({onSearchResults} : SearchBarProps) {
+export function SearchBar({onSearchResults, type} : SearchBarProps) {
     const [query, setQuery] = useState<string>("")
     const [error, setError] = useState<string | null>(null);
 
@@ -18,12 +19,20 @@ export function SearchBar({onSearchResults} : SearchBarProps) {
             return;
         }
 
+        let endpoint;
+
+        if (type == "receita") {
+            endpoint = "receitas"
+        } else if (type == "material") {
+            endpoint = "ingredientes"
+        }
+
         try {
             setError(null); 
-            const response = await axios.get(`http://localhost:8080/receitas/pesquisa`, {
+            const response = await axios.get(`http://localhost:8080/${endpoint}/pesquisa`, {
                 params: { termo: query }, 
-              });
-              onSearchResults(response.data);
+            });
+            onSearchResults(response.data);
         } catch (err) {
             console.error(err);
             setError("Erro ao buscar os dados. Por favor, tente novamente.");

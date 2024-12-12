@@ -12,14 +12,14 @@ export function Receitas() {
     const { data: allReceitas, refetch } = useRecipeData(); // Receitas iniciais
     const [filteredReceitas, setFilteredReceitas] = useState<any[]>([]); // Receitas da busca
 
-  const handleSearchResults = (results: any[]) => {
-    setFilteredReceitas(results);
-  };
+    const handleSearchResults = (results: any[]) => {
+        setFilteredReceitas(results);
+    };
 
     const handleDelete = async (id: number | undefined) => {
         try {
             await axios.delete(`${API_URL}/receitas/${id}`);
-            refetch(); // Refaz a busca inicial
+            refetch(); 
             setFilteredReceitas((prev) => prev.filter((receita) => receita.id !== id));
         } catch (error) {
             console.error('Erro ao deletar receitas:', error);
@@ -36,7 +36,7 @@ export function Receitas() {
     return (
         <div id="receitasContainer">
             <h1>Receitas</h1>
-            <SearchBar onSearchResults={handleSearchResults}/>
+            <SearchBar onSearchResults={handleSearchResults} type="receita" />
             {/* <div className="categorias">
                 <CategoryCard />
                 <CategoryCard />
@@ -59,6 +59,6 @@ export function Receitas() {
             {isModalOpen && <CreateIngredientModal type="receita" ingredient={null} recipe={null} closeModal={handleOpenModal} />}
             <button id="addButton" onClick={handleOpenModal}>+</button>
         </div>
-        
+
     )
 }

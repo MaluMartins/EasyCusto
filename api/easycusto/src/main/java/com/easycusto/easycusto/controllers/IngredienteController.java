@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.easycusto.easycusto.dtos.IngredienteAddDTO;
@@ -134,6 +135,12 @@ public class IngredienteController {
 		
 		return ResponseEntity.ok(ingrediente);
 	}
+	
+	@GetMapping("/pesquisa")
+    public ResponseEntity<List<Ingrediente>> pesquisar(@RequestParam String termo) {
+        List<Ingrediente> ingredientes = ingredienteService.buscarIngredientes(termo);
+        return ResponseEntity.ok(ingredientes);
+    }
 	
 	@DeleteMapping("{id}")
 	public ResponseEntity<Object> deleteIngredient(@PathVariable Long id) {
