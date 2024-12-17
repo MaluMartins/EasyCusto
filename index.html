@@ -16,6 +16,7 @@
 <body>
     <nav class="navbar navbar-expand-lg">
         <div class="container-fluid">
+            <img src="./logo.png" alt="Logo EasyCusto" id="logo">
             <a class="navbar-brand text-light" href="#">EasyCusto</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
                 aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
@@ -44,44 +45,51 @@
     <div id="containerDemo" class="container">
         <div class="row align-items-center content">
             <div class="col-12 col-md-6">
-                <h3>Cadastre todos os ingredientes necessários</h3>
+                <h3>Cadastre todos os ingredientes e materiais necessários</h3>
             </div>
             <div class="col-12 col-md-6">
-                <img class="demo-img img-fluid" src="./sample.png" alt="">
+                <img class="demo-img img-fluid" src="./assets/print-materiais.png" alt="">
             </div>
         </div>
+        <hr>
         <div class="row align-items-center content">
+            
+            <div class="col-12 col-md-6">
+                <img class="demo-img img-fluid" src="./assets/print-receitas.png" alt="">
+            </div>
             <div class="col-12 col-md-6">
                 <h3>Use os ingredientes em qualquer receita</h3>
             </div>
-            <div class="col-12 col-md-6">
-                <img class="demo-img img-fluid" src="./sample.png" alt="">
-            </div>
         </div>
+        <hr>
         <div class="row align-items-center content">
             <div class="col-12 col-md-6">
-                <h3>Conversor de medidas automático</h3>
+                <h3>Cadastre suas taxas</h3>
             </div>
             <div class="col-12 col-md-6">
-                <img class="demo-img img-fluid" src="./sample.png" alt="">
+                <img class="demo-img img-fluid" src="./assets/print-taxas.png" alt="">
             </div>
         </div>
+        <hr>
         <div class="row align-items-center content">
+            
             <div class="col-12 col-md-6">
-                <h3>Separe as receitas em categorias</h3>
+                <img class="demo-img img-fluid" src="./assets/print-salario.png" alt="">
             </div>
             <div class="col-12 col-md-6">
-                <img class="demo-img img-fluid" src="./sample.png" alt="">
+                <h3>Calcule seu salário para usar nas receitas</h3>
             </div>
         </div>
+        <hr>
         <div class="row align-items-center content">
             <div class="col-12 col-md-6">
                 <h3>Tenha todas as informações que precisa para vender seus produtos</h3>
             </div>
             <div class="col-12 col-md-6">
-                <img class="demo-img img-fluid" src="./sample.png" alt="">
+                <img class="demo-img img-fluid" src="./assets/print-receitas.png" alt="">
             </div>
         </div>
+        <hr>
         <div class="row">
             <div class="col text-center">
                 <button type="button" class="btn">Experimente grátis</button>
@@ -97,12 +105,13 @@
                     <div class="card-body">
                         <h5 class="card-title">Plano gratuito</h5>
                         <h4>R$0,00</h4>
-                        <p class="card-text"><i class="fas fa-check"></i> Cadastro ilimitado de ingredientes</p>
-                        <p class="card-text"><i class="fas fa-times"></i> Cadastre mais de 30 receitas</p>
-                        <p class="card-text"><i class="fas fa-check"></i> Cálculo do custo de ingredientes, embalagem e custos fixos</p>
-                        <p class="card-text"><i class="fas fa-check"></i> Cálculo do preço de venda com lucro</p>
-                        <p class="card-text"><i class="fas fa-times"></i> Sugestão automática de ingredientes com IA</p>
-                        <p class="card-text"><i class="fas fa-times"></i> Sugestão automática de preços</p>
+                        <p class="card-text"><i class="fas fa-check icon-success"></i> Cadastre ingredientes (até 30)</p>
+                        <p class="card-text"><i class="fas fa-check icon-success"></i> Cadastre e calcule o preço de receitas (até 15)</p>
+                        <p class="card-text"><i class="fas fa-check icon-success"></i> Cálculo do custo de ingredientes e embalagens</p>
+                        <p class="card-text"><i class="fas fa-check icon-success"></i> Cálculo do preço de venda com lucro</p>
+                        <p class="card-text"><i class="fas fa-times icon-danger"></i> Incluir taxas na precificação</p>
+                        <p class="card-text"><i class="fas fa-times icon-danger"></i> Incluir seu salário na precificação</p>
+                        <p class="card-text"><i class="fas fa-check icon-success"></i> Suporte via Whatsapp</p>
                         <button type="button" class="btn">Experimente grátis</button>
                     </div>
                 </div>
@@ -111,13 +120,14 @@
                 <div class="card">
                     <div class="card-body">
                         <h5 class="card-title">Plano mensal</h5>
-                        <h4>Em breve</h4>
-                        <p class="card-text"><i class="fas fa-check"></i> Cadastre ingredientes ilimitados</p>
-                        <p class="card-text"><i class="fas fa-check"></i> Cadastre mais de 30 receitas</p>
-                        <p class="card-text"><i class="fas fa-check"></i> Cálculo do custo de ingredientes, embalagem e custos fixos</p>
-                        <p class="card-text"><i class="fas fa-check"></i> Cálculo do preço de venda com lucro</p>
-                        <p class="card-text"><i class="fas fa-check"></i> Sugestão automática de ingredientes com IA</p>
-                        <p class="card-text"><i class="fas fa-check"></i> Sugestão automática de preços</p>
+                        <h4>R$12,90 por mês</h4>
+                        <p class="card-text"><i class="fas fa-check icon-success"></i> Cadastre ingredientes (ilimitado)</p>
+                        <p class="card-text"><i class="fas fa-check icon-success"></i> Cadastre e calcule o preço de receitas (ilimitado)</p>
+                        <p class="card-text"><i class="fas fa-check icon-success"></i> Cálculo do custo de ingredientes e embalagens</p>
+                        <p class="card-text"><i class="fas fa-check icon-success"></i> Cálculo do preço de venda com lucro</p>
+                        <p class="card-text"><i class="fas fa-check icon-success"></i> Incluir taxas na precificação</p>
+                        <p class="card-text"><i class="fas fa-check icon-success"></i> Incluir seu salário na precificação</p>
+                        <p class="card-text"><i class="fas fa-check icon-success"></i> Suporte via Whatsapp</p>
                         <button type="button" class="btn">Escolher plano</button>
                     </div>
                 </div>
@@ -126,13 +136,14 @@
                 <div class="card">
                     <div class="card-body">
                         <h5 class="card-title">Plano anual</h5>
-                        <h4>Em breve</h4>
-                        <p class="card-text"><i class="fas fa-check"></i> Cadastre ingredientes ilimitados</p>
-                        <p class="card-text"><i class="fas fa-check"></i> Cadastre mais de 30 receitas</p>
-                        <p class="card-text"><i class="fas fa-check"></i> Cálculo do custo de ingredientes, embalagem e custos fixos</p>
-                        <p class="card-text"><i class="fas fa-check"></i> Cálculo do preço de venda com lucro</p>
-                        <p class="card-text"><i class="fas fa-check"></i> Sugestão automática de ingredientes com IA</p>
-                        <p class="card-text"><i class="fas fa-check"></i> Sugestão automática de preços</p>
+                        <h4>R$120,00 por ano</h4>
+                        <p class="card-text"><i class="fas fa-check icon-success"></i> Cadastre ingredientes (ilimitado)</p>
+                        <p class="card-text"><i class="fas fa-check icon-success"></i> Cadastre e calcule o preço de receitas (ilimitado)</p>
+                        <p class="card-text"><i class="fas fa-check icon-success"></i> Cálculo do custo de ingredientes e embalagens</p>
+                        <p class="card-text"><i class="fas fa-check icon-success"></i> Cálculo do preço de venda com lucro</p>
+                        <p class="card-text"><i class="fas fa-check icon-success"></i> Incluir taxas na precificação</p>
+                        <p class="card-text"><i class="fas fa-check icon-success"></i> Incluir seu salário na precificação</p>
+                        <p class="card-text"><i class="fas fa-check icon-success"></i> Suporte via Whatsapp</p>
                         <button type="button" class="btn">Escolher plano</button>
                     </div>
                 </div>

@@ -183,7 +183,7 @@ export function CreateIngredientModal({ closeModal, type, ingredient, recipe }: 
                     )}
 
                     <button onClick={(e) => {
-                        e.preventDefault(); // Evita recarregar ou mudar a página
+                        e.preventDefault();
                         type === "material" ? submitIngrediente() : submitReceita();
                     }} className='btn-secondary'>Confirmar</button>
                 </form>
