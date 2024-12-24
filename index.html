@@ -27,18 +27,41 @@
                     <a class="nav-link" aria-current="page" href="#">Início</a>
                     <a class="nav-link" href="#containerPlanos">Planos</a>
                     <a class="nav-link" href="#">Blog</a>
-                    <button type="button" class="btn">Experimente grátis</button>
+                    <!-- <button type="button" class="btn">Lista de espera</button> -->
                 </div>
             </div>
         </div>
     </nav>
 
     <div id="containerMain">
-        <div>
-            <h1>Calculadora de receitas</h1>
-            <p>Tenha controle total sobre o custo, lucro e preço de venda das suas receitas com simplicidade e
+        <div id="mainContent">
+            <div>
+                <h1>Calculadora de receitas</h1>
+                <p>Tenha controle total sobre o custo, lucro e preço de venda das suas receitas com simplicidade e
                 praticidade.</p>
-            <button type="button" class="btn"><a href="./calculadora-rapida/index.html">Experimente grátis</a></button>
+                <h4>🗓️ Lançamento em: 15/02/2025</h4>
+            </div>
+        </div>
+        <div id="formularioEspera">
+            <form action="#" method="post">
+                <div class="form-group">
+                    <label for="nomeCompleto">Seu nome completo</label>
+                    <input type="text" id="nomeCompleto" name="nomeCompleto"
+                        required>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Seu e-mail</label>
+                    <input type="text" id="email" name="email">
+                </div>
+
+                <div class="form-group">
+                    <label for="telefone">Seu número de telefone</label>
+                    <input type="number" id="telefone" name="telefone">
+                </div>
+
+                <button type="submit" class="btn-calcular">Entrar na lista de espera</button>
+            </form>
         </div>
     </div>
 

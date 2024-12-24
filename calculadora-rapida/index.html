@@ -4,6 +4,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Aprenda como fazer a precificação correta de receitas para confeitarias e descubra uma calculadora gratuita que facilita esse processo.">
+    <meta name="keywords"
+        content="Precificação de receitas, calcular preço de venda, precificação confeitaria, calculadora de preços receitas grátis, margem de lucro para receitas">
+    <meta name="author" content="EasyCusto">
     <title>Calculadora de preço de venda de receitas | EasyCusto</title>
     <link rel="icon" href="../logo.png">
     <link rel="stylesheet" href="index.css">
@@ -30,30 +35,39 @@
             </div>
         </div>
     </nav>
-    
+
     <div class="page-container">
         <div id="calculadora">
-            <h1 class="titulo">Calculadora de receita</h1>
-            <form action="#" method="post">
+            <div id="formulario">
+                <h1 class="titulo">Calculadora de receita</h1>
+                <form action="#" method="post">
 
-                <div class="form-group">
-                    <label for="custoIngredientes">Custo total dos ingredientes</label>
-                    <input type="text" id="custoIngredientes" name="custoIngredientes" placeholder="Ex: R$50,00"
-                        required>
-                </div>
+                    <div class="form-group">
+                        <label for="custoIngredientes">Custo total dos ingredientes</label>
+                        <input type="text" id="custoIngredientes" name="custoIngredientes" placeholder="Ex: R$50,00"
+                            required>
+                    </div>
 
-                <div class="form-group">
-                    <label for="custosFixos">Custos fixos (água, luz, gás)</label>
-                    <input type="text" id="custosFixos" name="custosFixos" placeholder="Ex: R$20,00" required>
-                </div>
+                    <div class="form-group">
+                        <label for="custosFixos">Custos fixos (água, luz, gás)</label>
+                        <input type="text" id="custosFixos" name="custosFixos" placeholder="Ex: R$20,00" required>
+                    </div>
 
-                <div class="form-group">
-                    <label for="margemLucro">Margem de lucro (%)</label>
-                    <input type="number" id="margemLucro" name="margemLucro" placeholder="Ex: 25" required>
-                </div>
+                    <div class="form-group">
+                        <label for="margemLucro">Margem de lucro (%)</label>
+                        <input type="number" id="margemLucro" name="margemLucro" placeholder="Ex: 25" required>
+                    </div>
 
-                <button type="submit" class="btn-calcular">Calcular</button>
-            </form>
+                    <button type="submit" class="btn-calcular">Calcular</button>
+                </form>
+            </div>
+
+            <div id="resultados" style="display: none;">
+                <h1 class="titulo">Resultados</h1>
+                <h4 id="precoVenda">Preço de venda:</h4>
+                <h4 id="lucroTotal">Lucro total:</h4>
+                <button id="btnRecalcular" class="btn-calcular">Calcular novamente</button>
+            </div>
         </div>
         <div id="bannerEasycusto">
             <h1>Gostaria de salvar suas precificações em um só lugar?</h1>
@@ -62,16 +76,94 @@
                 <li><i class="fas fa-check"></i> Cadastrar todos os materiais e ingredientes que usa.</li>
                 <li><i class="fas fa-check"></i> Calcular o preço das suas receitas com um clique.</li>
                 <li><i class="fas fa-check"></i> Consultar tudo sempre que precisar, sem refazer contas.</li>
-                <li><i class="fas fa-check"></i> Garantir seu lucro sem dor de cabeça!</li>
             </ul>
             <p class="p-cta">Conheça a EasyCusto agora e pare de perder tempo com contas manuais 👇</p>
-            <button class="btn-cta">Experimente agora</button>
+            <div class="row align-items-center content">
+                <div class="col-12 col-md-6">
+                    <img class="demo-img img-fluid" src="../assets/print-receitas-red.png" alt="">
+                </div>
+                <div class="col-12 col-md-6">
+                    <button class="btn-cta"><a href="../index.html">Experimente agora</a></button>
+                </div>
+            </div>
         </div>
+    </div>
+
+    <div id="infotext">
+        <header>
+            <h1>Como Fazer a Precificação Correta de Receitas para Confeitarias</h1>
+        </header>
+
+        <main>
+            <section>
+                <p>Precificar receitas é um dos passos mais importantes para garantir o sucesso da sua confeitaria.
+                    Muitos empreendedores cometem erros ao definir seus preços, o que pode levar a prejuízos ou a lucros
+                    menores do que o esperado. Aqui, vamos explicar de maneira simples como calcular o preço de venda
+                    das suas receitas, considerando todos os custos e garantindo uma margem de lucro ideal.</p>
+            </section>
+
+            <section>
+                <h2>Passo a Passo da Precificação de Receitas</h2>
+
+                <article>
+                    <h3>1. Some todos os custos dos ingredientes</h3>
+                    <p>Para começar, liste cada ingrediente utilizado na receita e seus respectivos preços. Depois,
+                        calcule quanto cada um deles custa para a quantidade usada na receita. Por exemplo:</p>
+                    <ul>
+                        <li><strong>500g de farinha de trigo:</strong> Se o pacote de 1kg custa R$ 10, o custo será R$
+                            5.</li>
+                        <li><strong>200g de açúcar:</strong> Se 1kg custa R$ 8, o custo será R$ 1,60.</li>
+                    </ul>
+                    <p>Repita o processo para todos os ingredientes da receita e some esses valores.</p>
+                </article>
+
+                <article>
+                    <h3>2. Adicione os custos fixos</h3>
+                    <p>Além dos ingredientes, você precisa incluir os custos fixos da produção. Esses custos são itens
+                        que você paga independentemente do número de receitas produzidas, como:</p>
+                    <ul>
+                        <li>- Energia elétrica</li>
+                        <li>- Gás</li>
+                        <li>- Água</li>
+                        <li>- Embalagens</li>
+                        <li>- Desgaste de equipamentos</li>
+                    </ul>
+                    <p>Estime o valor total desses custos e divida pelo número de receitas que você produz. Isso
+                        permitirá calcular quanto cada receita "gasta" nos custos fixos.</p>
+                </article>
+
+                <article>
+                    <h3>3. Adicione a margem de lucro</h3>
+                    <p>Agora que você sabe quanto custa produzir a receita, é hora de incluir a margem de lucro. Essa é
+                        a porcentagem que você adiciona ao custo total para garantir seus ganhos. Por exemplo:</p>
+                    <p><strong>Cálculo:</strong> Se o custo total da receita (ingredientes + custos fixos) é R$ 50 e
+                        você deseja uma margem de lucro de 30%, o cálculo será:</p>
+                    <p><strong>R$ 50 + (30% de R$ 50) = R$ 65.</strong></p>
+                    <p>Esse será o preço final de venda para o cliente.</p>
+                </article>
+            </section>
+
+            <section>
+                <h2>Por que a Precificação Correta é Importante?</h2>
+                <p>Precificar suas receitas de forma errada pode trazer problemas significativos para o seu negócio.
+                    Aqui estão algumas razões para investir tempo e esforço em um cálculo correto:</p>
+                <ul>
+                    <li><strong>Evitar prejuízos:</strong> Muitos empreendedores esquecem de incluir todos os custos,
+                        acabando por cobrar menos do que deveriam.</li>
+                    <li><strong>Maximizar lucros:</strong> Uma precificação bem-feita garante que você alcance a margem
+                        de lucro necessária para crescer o negócio.</li>
+                    <li><strong>Manter competitividade:</strong> Com preços adequados, você pode competir no mercado sem
+                        desvalorizar seu trabalho.</li>
+                    <li><strong>Decisões estratégicas:</strong> Saber os custos exatos de produção ajuda na criação de
+                        promoções, combos e ajustes de preços sem prejudicar o fluxo de caixa.</li>
+                </ul>
+            </section>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
         crossorigin="anonymous"></script>
+    <script src="./calculo.js"></script>
 </body>
 
 </html>

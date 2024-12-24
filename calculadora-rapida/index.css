@@ -9,6 +9,11 @@ body {
     background-color: #f9f9f9;
 }
 
+a {
+    text-decoration: none!important;
+    color: #8a3030!important;
+}
+
 .navbar {
     background-color: #f9f9f9;
     padding: 15px;
@@ -46,28 +51,22 @@ body {
 .page-container {
     display: flex;
     justify-content: center;
-    align-items: stretch;
+    /* align-items: stretch; */
     gap: 2rem; /* Espaço entre as divs */
     padding: 2rem;
     max-width: 1200px;
     margin: 0 auto;
 }
 
-/* Responsividade */
-@media (max-width: 768px) {
-    .page-container {
-        flex-direction: column;
-        align-items: center;
-    }
-}
-
-/* Estilo da Calculadora */
 #calculadora {
     flex: 1; /* Ocupar metade do espaço disponível */
+    max-width: 50%;
     background-color: #fff;
-    padding: 2rem;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .titulo {
@@ -117,9 +116,14 @@ input:focus {
     transform: translateY(-2px);
 }
 
-/* Estilo do Banner EasyCusto */
+#resultados {
+    text-align: center;
+}
+
 #bannerEasycusto {
-    flex: 1;
+    /* visibility: hidden; */
+    /* flex: 1; */
+    max-width: 40%;
     background-color: #8a3030;
     color: #fff;
     padding: 2rem;
@@ -174,14 +178,89 @@ ul li {
     transform: translateY(-2px);
 }
 
+#infotext {
+    padding: 2rem 10rem;
+}
+
+/* Cabeçalho */
+header {
+    color: #8a3030;
+    text-align: center;
+}
+
+header h1 {
+    font-size: 2rem;
+    margin: 0;
+    font-weight: bold;
+}
+
+section {
+    margin-bottom: 20px;
+}
+
+p, ul {
+    margin-bottom: 15px;
+}
+
+/* Listas */
+ul {
+    padding-left: 20px;
+}
+
+ul li {
+    margin-bottom: 5px;
+}
+
+/* Botão */
+button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    text-align: center;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+button a {
+    text-decoration: none;
+    color: #fff;
+}
+
+/* Rodapé */
+footer {
+    text-align: center;
+    padding: 10px;
+    background-color: #6c757d;
+    color: #fff;
+    margin-top: 20px;
+    font-size: 0.9rem;
+}
+
 /* Ajustes no Mobile */
 @media (max-width: 768px) {
     #calculadora,
     #bannerEasycusto {
         width: 100%;
+        max-width: 100%;
+    }
+
+    #calculadora {
+        padding: 1.5rem;
     }
 
     .page-container {
+        flex-direction: column;
+        align-items: center;
+        padding: 1rem;
+    }
+    
+    #infotext {
         padding: 1rem;
     }
 }
