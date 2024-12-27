@@ -232,17 +232,55 @@ button a {
     color: #fff;
 }
 
-/* Rodapé */
-footer {
-    text-align: center;
-    padding: 10px;
-    background-color: #6c757d;
+#containerContato {
+    background-color: #8a3030;
     color: #fff;
-    margin-top: 20px;
-    font-size: 0.9rem;
+    text-align: center;
+    padding: 40px 0;
 }
 
-/* Ajustes no Mobile */
+#containerContato h1,
+#containerContato h4 {
+    color: #fff;
+}
+
+#containerContato a {
+    color: #fff;
+    margin: 0 10px;
+    transition: color 0.3s;
+}
+
+#containerContato a:hover {
+    color: #f1f1f1;
+}
+
+/* Footer Button */
+#containerContato .btn {
+    background-color: #fff;
+    color: #8a3030;
+    border: none;
+    padding: 10px 20px;
+    margin-top: 20px;
+}
+
+#containerContato .btn:hover {
+    background-color: #8a3030;
+    color: #fff;
+}
+
+.icon-success {
+    color: green;
+}
+
+.icon-danger {
+    color: red;
+}
+
+#logo {
+    max-width: 30px;
+    margin-right: 5px;
+}
+
 @media (max-width: 768px) {
     #calculadora,
     #bannerEasycusto {
@@ -262,5 +300,9 @@ footer {
     
     #infotext {
         padding: 1rem;
+    }
+
+    .btn-cta {
+        margin-top: 1rem;
     }
 }

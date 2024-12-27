@@ -38,14 +38,14 @@ a {
     margin-right: 15px;
 }
 
-.navbar-nav .btn {
+/* .navbar-nav .btn {
     background-color: #fff;
     color: #8a3030;
     border: 2px solid #fff;
     transition: 0.3s;
-}
+} */
 
-.navbar-nav .btn:hover {
+.navbar-nav .btn {
     background-color: #8a3030;
     color: #fff;
     border: 2px solid #fff;
@@ -208,7 +208,6 @@ input:focus {
     border: 2px solid #8a3030;
 }
 
-/* Contact Section */
 #containerContato {
     background-color: #8a3030;
     color: #fff;

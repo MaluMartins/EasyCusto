@@ -2,7 +2,7 @@ import { useState } from "react";
 import "./recipeCard.css"
 import { FaEdit, FaTrash } from 'react-icons/fa';
 import { RecipeData } from "../../interface/RecipeData";
-import { CreateIngredientModal } from "../CreateIngredientModal/CreateModal";
+import { CreateIngredientModal } from "../CreateModal/CreateModal";
 import { useNavigate } from "react-router-dom";
 
 interface RecipeProps {

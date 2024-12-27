@@ -3,11 +3,17 @@ import "./receitaItens.css";
 import { useRecipeById } from "../../hooks/useRecipeDataById";
 import { RecipeDetails } from "../../components/RecipeDetails/RecipeDetails";
 import { Sidebar } from "../../components/Sidebar/Sidebar";
+import { AddIngredientModal } from "../../components/AddIngredientModal/AddIngredientModal";
+import { useState } from "react";
 
 export function ReceitaItens() {
     const { id } = useParams<{ id: string }>();
     const recipeId = Number(id);
     const { data, isLoading, error } = useRecipeById(recipeId);
+    const [isModalOpen, setIsModalOpen] = useState(false);
+    const handleOpenModal = () => {
+        setIsModalOpen(prev => !prev)
+    }
 
     if (isLoading) {
         return <div className="loading">Carregando receita...</div>;
@@ -25,15 +31,19 @@ export function ReceitaItens() {
 
     return (
         <div id="receitaContainer">
-            <Sidebar />
-            <RecipeDetails
-                nome={nome}
-                rendimento={rendimento}
-                unidadeRendimento={unidadeRendimento}
-                margemLucro={margemLucro}
-                horasPreparo={horasPreparo}
-                minutosPreparo={minutosPreparo}
-            />
+            <div className="receitaContent">
+                <Sidebar />
+                <RecipeDetails
+                    nome={nome}
+                    rendimento={rendimento}
+                    unidadeRendimento={unidadeRendimento}
+                    margemLucro={margemLucro}
+                    horasPreparo={horasPreparo}
+                    minutosPreparo={minutosPreparo}
+                />
+                {isModalOpen && <AddIngredientModal closeModal={handleOpenModal} />}
+                <button onClick={handleOpenModal} className="btn-secondary">Adicionar ingrediente</button>
+            </div>
         </div>
     );
 }
