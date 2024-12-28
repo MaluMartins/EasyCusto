@@ -1,7 +1,6 @@
 export interface RecipeIngredientData {
-    id: number,
-    receita: number,
-    ingrediente: number,
+    id?: number,
+    id_ingrediente?: number,
     qtUsada: number,
-    custoIngrediente: number,
+    custoIngrediente?: number,
 }

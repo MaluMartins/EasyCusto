@@ -2,7 +2,7 @@
     display: flex;
 }
 
-select#unidade-medida {
+#unidade-ingrediente {
     -webkit-appearance: none;
     -moz-appearance: none;
     text-indent: 1px;

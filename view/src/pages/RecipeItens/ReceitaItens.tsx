@@ -41,7 +41,7 @@ export function ReceitaItens() {
                     horasPreparo={horasPreparo}
                     minutosPreparo={minutosPreparo}
                 />
-                {isModalOpen && <AddIngredientModal closeModal={handleOpenModal} />}
+                {isModalOpen && <AddIngredientModal id_receita={recipeId} closeModal={handleOpenModal} />}
                 <button onClick={handleOpenModal} className="btn-secondary">Adicionar ingrediente</button>
             </div>
         </div>

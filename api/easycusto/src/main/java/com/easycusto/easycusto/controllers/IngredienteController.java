@@ -116,7 +116,7 @@ public class IngredienteController {
 	    
 	    receita.getReceitaIngredientes().add(receitaIngrediente);
 	    
-	    receita.calcularCustosFinais();
+	    //receita.calcularCustosFinais();
 	    
 	    this.receitaRepository.save(receita);
 	    
